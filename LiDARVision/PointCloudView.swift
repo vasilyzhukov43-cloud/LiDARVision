@@ -57,8 +57,8 @@ struct PointCloudView: UIViewRepresentable {
         element.maximumPointScreenSpaceRadius = 6
 
         let geometry = SCNGeometry(
-            sources: [source],
-            elements: [element]
+        sources: [source, colorSource],
+        elements: [element]
         )
 
         let colors = points.map { point -> SIMD4<Float> in
@@ -89,7 +89,6 @@ struct PointCloudView: UIViewRepresentable {
             dataStride: MemoryLayout<SIMD4<Float>>.stride
         )
 
-        geometry.sources.append(colorSource)
 
         let node = SCNNode(geometry: geometry)
         node.name = "pointCloud"
