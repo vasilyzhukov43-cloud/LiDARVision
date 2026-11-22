@@ -1,0 +1,38 @@
+
+name: Build LiDARVision
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build iOS app
+        run: |
+          xcodebuild \
+            -project LiDARVision.xcodeproj \
+            -scheme LiDARVision \
+            -sdk iphoneos \
+            -configuration Release \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LiDARVision-build
+          path: build/Build/Products/Release-iphoneos/LiDARVision.app

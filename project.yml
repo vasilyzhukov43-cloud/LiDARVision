@@ -1,0 +1,25 @@
+
+name: LiDARVision
+
+options:
+  bundleIdPrefix: com.vasilyzhukov43
+  deploymentTarget:
+    iOS: "17.0"
+
+targets:
+  LiDARVision:
+    type: application
+    platform: iOS
+
+    sources:
+      - path: LiDARVision
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vasilyzhukov43.lidarvision
+        PRODUCT_NAME: LiDARVision
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_FILE: LiDARVision/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
